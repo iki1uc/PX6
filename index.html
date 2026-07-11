@@ -2,64 +2,88 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>PX6 – Pipeline-All-In</title>
+<title>PX6 – ALL-IN INDEX</title>
 
 <style>
 body{background:#000;color:#0f0;font-family:monospace;padding:20px;}
-pre{background:#111;padding:20px;border:1px solid #333;}
-input{background:#111;color:#0f0;border:1px solid #333;padding:6px;width:120px;}
-button{background:#111;color:#0f0;border:1px solid #333;padding:8px 16px;margin-left:10px;}
+h1{color:#6cf;}
+section{margin-bottom:40px;}
+pre{background:#111;padding:12px;border:1px solid #333;}
+button{background:#111;color:#0f0;border:1px solid #333;padding:6px 12px;margin:6px;}
+iframe{width:100%;height:300px;border:1px solid #333;background:#111;}
 </style>
 </head>
 
 <body>
 
-<h1>PX6 – Pipeline-All-In</h1>
+<h1>PX6 – Pipeline-All-In · MASTER INDEX</h1>
 
-<p>Input:</p>
-<input id="inp" type="number" step="0.01" value="1">
+<section>
+<h2>PX6 RUN</h2>
+<input id="inp" type="number" value="1" step="0.01">
 <button onclick="runPX6()">RUN</button>
+<pre id="px6out">Bereit...</pre>
+</section>
 
-<pre id="out">Bereit...</pre>
+<section>
+<h2>TOOLOMAT · GRID (me4 / in4 / run4 / me2 / in2 / u4)</h2>
+<iframe src="tool.html"></iframe>
+</section>
+
+<section>
+<h2>TOOLOMAT · DOM</h2>
+<iframe src="toolomat_dom.html"></iframe>
+</section>
+
+<section>
+<h2>TOOLOMAT · UI (NC‑Achse)</h2>
+<iframe src="toolomat_ui.html"></iframe>
+</section>
+
+<section>
+<h2>TOOLOMAT · OUTPUT</h2>
+<iframe src="toolomat_output.html"></iframe>
+</section>
+
+<section>
+<h2>FLÄCHEN‑SCANNER 48</h2>
+<iframe src="toolomat_flaeche_48.html"></iframe>
+</section>
+
+<section>
+<h2>TIME 3×11 · Scroll + Zoom</h2>
+<iframe src="time_3x11_scroll_zoom.html"></iframe>
+</section>
+
+<section>
+<h2>4D · Zustand / Winkel / Raum / Zeit</h2>
+<iframe src="4D.html"></iframe>
+</section>
+
+<script src="minimal.js"></script>
+<script src="GEOMETRIA.js"></script>
+<script src="NC‑Achse.js"></script>
+<script src="run4.js"></script>
+<script src="call.js"></script>
 
 <script>
-// === MINIMAL ENGINE =================================================
-
-// PX3 (Schnittstelle, minimal)
-function φ3(x){ return x + 3 }
-
-// PX4 (Schnittstelle, minimal)
-function Φ4(x){ return x * 4 }
-
-// PX6 (Schnittstelle, minimal)
-function Φ6(x){ return x ** 6 }
-
-// === PX6 CORE ========================================================
-const PX6 = {
-  run(input){
-    const p3 = φ3(input)
-    const p4 = Φ4(p3)
-    const p6 = Φ6(p4)
-    return {p3,p4,p6}
-  }
-}
-
-// === UI ==============================================================
+// PX6 RUNNER (minimal)
 function runPX6(){
-  const x = parseFloat(document.getElementById("inp").value)
-  const r = PX6.run(x)
+  const x = parseFloat(inp.value);
+  const p3 = PX3(x);
+  const p4 = PX4(p3);
+  const p6 = PX6(p4);
 
-  document.getElementById("out").textContent =
+  px6out.textContent =
 `PX6 – RESULT
 
 Input: ${x}
 
-φ3(x) = ${r.p3}
-Φ4(φ3) = ${r.p4}
-Φ6(Φ4) = ${r.p6}
+PX3 = ${p3}
+PX4 = ${p4}
+PX6 = ${p6}
 
-FINAL = ${r.p6}
-`
+FINAL = ${p6}`;
 }
 </script>
 
