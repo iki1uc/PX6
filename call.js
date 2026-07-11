@@ -1,3 +1,8 @@
-// call.js ist LEER
-// Du hast keinen Code gepostet.
-// Wenn du willst, kann ich dir eine Basis-Version bauen.
+const PX6 = {
+  run(input) {
+    const p3 = φ3(input)
+    const p4 = Φ4(p3)
+    const p6 = Φ6(p4)
+    return p6
+  }
+}
