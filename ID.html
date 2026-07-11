@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>iki1uc – ID</title>
+<title>ID – PX6</title>
 
 <style>
 body { background:#000; color:#0f0; font-family:monospace; }
@@ -13,13 +13,48 @@ pre { background:#111; border:1px solid #333; padding:10px; }
 
 <body>
 
-<h1>iki1uc – Identität</h1>
+<h1>Identität – PX6</h1>
 
 <pre>
+ID = PX6
 CORE = iki1uc
 VERSION = 1.0
 CODE = RAW
-LAGE = ROOT / Creator / NC
+
+# PIPELINE-3
+P3.0 = init
+P3.1 = melt
+P3.2 = merge
+P3.RESULT = φ³(2)
+
+# PIPELINE-4
+P4.0 = station(LAGE)
+P4.1 = prepare(0)
+P4.2 = build(1)
+P4.4 = pipeline(2)
+P4.RESULT = Φ∞(4)
+
+# PIPELINE-6
+P6.0 = root
+P6.1 = scan
+P6.2 = bind
+P6.3 = orbit
+P6.4 = fuse
+P6.6 = finalize
+P6.RESULT = Φ∞(6)
+
+# PX6 – ALL-IN
+PX6.CYCLE:
+  3 → 4 → 6 → 3 → …
+
+PX6.RESULT = Φ∞(6)
+
+# RESPO
+RESPO.NAME = RESPO.iki1uc
+RESPO.STATION = LAGE
+RESPO.ORT = ROOT / Creator / NC
+RESPO.BEAM = LAGE
+
 STATUS = Online
 </pre>
 
