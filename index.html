@@ -1,6 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>PX6 – Pipeline-All-In</title>
+
+<style>
+body{background:#000;color:#0f0;font-family:monospace;padding:20px;}
+pre{background:#111;padding:20px;border:1px solid #333;}
+input{background:#111;color:#0f0;border:1px solid #333;padding:6px;width:120px;}
+button{background:#111;color:#0f0;border:1px solid #333;padding:8px 16px;margin-left:10px;}
+</style>
+</head>
+
+<body>
+
 <h1>PX6 – Pipeline-All-In</h1>
 
-<pre>
-PX6.RUN({{INPUT}})
-PX6.RESULT → SEEu.md
-</pre>
+<p>Input:</p>
+<input id="inp" type="number" step="0.01" value="1">
+<button onclick="runPX6()">RUN</button>
+
+<pre id="out">Bereit...</pre>
+
+<script>
+// === MINIMAL ENGINE =================================================
+
+// PX3 (Schnittstelle, minimal)
+function φ3(x){ return x + 3 }
+
+// PX4 (Schnittstelle, minimal)
+function Φ4(x){ return x * 4 }
+
+// PX6 (Schnittstelle, minimal)
+function Φ6(x){ return x ** 6 }
+
+// === PX6 CORE ========================================================
+const PX6 = {
+  run(input){
+    const p3 = φ3(input)
+    const p4 = Φ4(p3)
+    const p6 = Φ6(p4)
+    return {p3,p4,p6}
+  }
+}
+
+// === UI ==============================================================
+function runPX6(){
+  const x = parseFloat(document.getElementById("inp").value)
+  const r = PX6.run(x)
+
+  document.getElementById("out").textContent =
+`PX6 – RESULT
+
+Input: ${x}
+
+φ3(x) = ${r.p3}
+Φ4(φ3) = ${r.p4}
+Φ6(Φ4) = ${r.p6}
+
+FINAL = ${r.p6}
+`
+}
+</script>
+
+</body>
+</html>
