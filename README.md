@@ -1,35 +1,33 @@
 # PX6 – Pipeline-All-In
 
-PX6 sammelt, prüft und verbindet alle Pipeline-Bildungen:
+PX6 sammelt, prüft, verbindet:
+- P-3, P-4, P-6
 
-- Pipeline-3
-- Pipeline-4
-- Pipeline-6
+                 AXIS
+                 92%
 
-PX6 dient als globaler RESPO-Pipeline-Checker für:
+      RESPO                 6D
+       62%                  95%
 
-- Station LAGE
-- Ort ROOT / Creator / NC
-- RESPO.iki1uc
-- Beam-Point LAGE
-- RUN8
+                ◉ WORK
+
+      TMP                   MNMM
+      37%                   74%
+
+                 EBENE
+                  81%
 
 # FUNKTION
-PX6 verbindet alle Pipeline-Stufen:
-
 3 → 4 → 6 → 3 → …
-
-PX6 erzeugt das finale Ergebnis:
-
 PX6.RESULT = Φ∞(6)
 
-# VERBUNDEN MIT
-- [RESPO-Name](ca://s?q=RESPO_Name)
-- [RESPO-Station](ca://s?q=RESPO_Station)
-- [RESPO-Ort-LAGE](ca://s?q=RESPO_Ort_LAGE)
-- [RESPO-Beam-Point](ca://s?q=RESPO_Beam_Point)
-- [RESPO-Code-Pipeline](ca://s?q=RESPO_Code_Pipeline)
-- MASTER-SCANNER
-- system-check.js
-- root-station-check.js
-- SEEu.md Generator
+# VERBUNDEN MIT — gekürzt, Mann!
+- R-Name
+- R-Station
+- R-Ort-LAGE
+- R-Beam
+- R-Code
+- M-Scanner
+- sys-check.js
+- root-check.js
+- SEEu.md
