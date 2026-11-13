@@ -1,3 +1,4 @@
+// PX6 Inhalt, Mann! + 6.our Inhalt, Mann!
 const PX6 = {
   run(input) {
     const p3 = φ3(input)
