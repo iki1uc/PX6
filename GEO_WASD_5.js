@@ -1,25 +1,66 @@
-// PX6 Inhalt, Mann! — geo.md — W.A.S.D. so ya, Mann!
+// PX6 Inhalt, Mann! — GEO_WASD_5 SOUVERÄN, Mann! — NEU, nicht alt, Mann!
+// 1 Name = 1 Respo: GEO_WASD_5 steuert nur GEO WASD, Mann!
 
-function GEO_WASD_5(key){
-  // W = vor, Mann! AXIS 92%, Mann!
-  if(key === "w") return { zone: "AXIS", wert: 92, wirkung: "vor" };
+const GEO_WASD_5 = {
+  id: "GEO_WASD_5",
+  version: "2.0-souveraen",
+  deps: [], // souverän = keine Deps, Mann! Braucht nix von außen, Mann!
+  respo: "GEO WASD",
 
-  // A = links, Mann! RESPO 62%, Mann!
-  if(key === "a") return { zone: "RESPO", wert: 62, wirkung: "links" };
+  // SOUVERÄN = FROZEN, Mann! Niemand ändert die Werte von außen, Mann!
+  MAP: Object.freeze({
+    w: Object.freeze({ zone: "AXIS",  wert: 92, wirkung: "vor" }),
+    a: Object.freeze({ zone: "RESPO", wert: 62, wirkung: "links" }),
+    s: Object.freeze({ zone: "EBENE", wert: 81, wirkung: "zurück" }),
+    d: Object.freeze({ zone: "6D",    wert: 95, wirkung: "rechts" }),
+  }),
 
-  // S = zurück, Mann! EBENE 81%, Mann!
-  if(key === "s") return { zone: "EBENE", wert: 81, wirkung: "zurück" };
+  WORK: Object.freeze({ zone: "WORK", wert: "◉", wirkung: "Mitte", tmp: 37, mnmm: 74 }),
 
-  // D = rechts, Mann! 6D 95%, Mann!
-  if(key === "d") return { zone: "6D", wert: 95, wirkung: "rechts" };
+  // Plug-in-Form, Mann! Wie FIGUR / ZONE, Mann!
+  init(OS) { this.OS = OS; return "GEO_WASD_5 SOUVERÄN — bereit, Mann!"; },
+  destroy(OS) { this.OS = null; return "GEO_WASD_5 SOUVERÄN — abgehängt, Kern unberührt, Mann!"; },
 
-  return { zone: "WORK", wert: "◉", wirkung: "Mitte" };
-}
+  api: {
+    // SOUVERÄN = immer Kopie, nie Original, Mann!
+    // Niemand mutiert dein MAP, Mann!
+    get(key) {
+      const k = String(key ?? "").toLowerCase();
+      const treffer = GEO_WASD_5.MAP[k] || GEO_WASD_5.WORK;
+      return { ...treffer }; // Kopie, Mann! Original bleibt frozen, Mann!
+    },
 
-// 5 Zapfe, Mann!
-// W = AXIS 92, Mann!
-// A = RESPO 62, Mann!
-// S = EBENE 81, Mann!
-// D = 6D 95, Mann!
-// Mitte = WORK, Mann! TMP 37, MNMM 74, Mann!
-// Pentagramm → Prismaticum, Mann!
+    // Alle 5 Zapfe auf einmal, Mann! Nacheinander, Mann!
+    alle() {
+      return {
+        w: GEO_WASD_5.api.get("w"),
+        a: GEO_WASD_5.api.get("a"),
+        s: GEO_WASD_5.api.get("s"),
+        d: GEO_WASD_5.api.get("d"),
+        mitte: GEO_WASD_5.api.get("x"), // x = WORK, Mann!
+      };
+    },
+
+    // HALT, Mann! Wie BUND, Mann!
+    halt() {
+      const alle = GEO_WASD_5.api.alle();
+      const ok = alle.w.wert === 92 && alle.a.wert === 62 && alle.s.wert === 81 && alle.d.wert === 95;
+      return { halt: ok ? "ZIEL" : "OFFEN", respo: "GEO WASD", souveran: true };
+    },
+
+    // 5 Zapfe → Pentagramm → Prismaticum, Mann! Aus stimme.js, Mann!
+    prismaticum() {
+      return ["ROT", "ORANGE", "GELB", "GRÜN", "BLAU", "VIOLETT"];
+    }
+  }
+};
+
+// So, Mann! Souverän, Mann!
+// GEO_WASD_5.api.get("w") → { zone: "AXIS", wert: 92, wirkung: "vor" }, Mann!
+// GEO_WASD_5.api.get("W") → gleich, Mann! Groß + klein, Mann!
+// GEO_WASD_5.api.get("x") → { zone: "WORK", wert: "◉", wirkung: "Mitte", tmp: 37, mnmm: 74 }, Mann!
+// GEO_WASD_5.api.alle() → alle 5 Zapfe, Mann!
+// GEO_WASD_5.api.halt() → { halt: "ZIEL", souveran: true }, Mann!
+// GEO_WASD_5.api.prismaticum() → 6 Farben, Mann!
+
+export default GEO_WASD_5;
